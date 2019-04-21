@@ -23,13 +23,13 @@ class Store(db.Model):
     # 制单人
     creator = db.Column(db.String(10))
     # 制单时间
-    create_time = db.Column(db.DateTime)
+    create_time = db.Column(db.DateTime, default=datetime.datetime.now)
     # 审核状态
     status = db.Column(db.Boolean)
     # 审核人
     reviewer = db.Column(db.String(10))
     # 审核时间
-    review_time = db.Column(db.DateTime)
+    review_time = db.Column(db.DateTime, default=datetime.datetime.now)
 
     def __repr__(self):
         return '{}'.format(self.id)

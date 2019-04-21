@@ -16,10 +16,18 @@
                     {{ message }}
                 {% endfor %}
             <br>{{ form.telephone.label }}{{ form.telephone }}<br>
+
+{#                手机号码重复返回的错误提示#}
+                {% if context  %}
+                    {{ context.content }}
+                {% else %}
+                    <div></div>
+                {% endif %}
+
                 {% for message in form.telephone.errors %}
                     {{ message }}
                 {% endfor %}
-{#            <br>{{ form.role.label }}{{ form.role }}<br>#}
+            <br>{{ form.role.label }}{{ form.role }}<br>
             <br>{{ form.password.label }}{{ form.password }}<br>
                 {% for message in form.password.errors %}
                     {{ message }}
@@ -29,6 +37,14 @@
                     {{ message }}
                 {% endfor %}
             {{ form.submit }}
+
+{#            若程序后台错误导致不能注册返回的提示信息#}
+            {% if context1 %}
+                {{ context1.content }}
+            {% else %}
+                <div></div>
+            {% endif %}
+
         </form>
     </div>
 </body>

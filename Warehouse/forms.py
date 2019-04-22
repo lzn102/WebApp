@@ -10,7 +10,7 @@ from wtforms.validators import DataRequired, Length, EqualTo
 
 
 # 注册表单
-class LoginForm(FlaskForm):
+class RegisterForm(FlaskForm):
     # 用户名
     """ render_kw 中可以添加html的属性值 """
     username = StringField('姓名', validators=[DataRequired()], render_kw={'placeholder': '姓名'})
@@ -25,3 +25,12 @@ class LoginForm(FlaskForm):
     verify_pwd = PasswordField('确认密码', validators=[EqualTo('password'), DataRequired()], render_kw={'placeholder': '重复密码'})
     # 提交
     submit = SubmitField('注册')
+
+
+# 登录表单
+class LoginForm(FlaskForm):
+    telephone = TelField('电话', validators=[DataRequired(), Length(11)], render_kw={'placeholder': '手机'})
+    password = PasswordField('密码', validators=[Length(6, 20), DataRequired()], render_kw={'placeholder': '密码'})
+    submit = SubmitField('登录')
+
+

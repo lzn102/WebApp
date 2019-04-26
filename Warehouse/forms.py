@@ -8,6 +8,8 @@ from wtforms.fields.html5 import TelField
 # 表单的验证条件
 from wtforms.validators import DataRequired, Length, EqualTo
 
+from .models import Partner
+
 
 # 注册表单
 class RegisterForm(FlaskForm):
@@ -22,7 +24,8 @@ class RegisterForm(FlaskForm):
     # 密码
     password = PasswordField('密码', validators=[Length(6, 20), DataRequired()], render_kw={'placeholder': '设置密码'})
     # 验证密码
-    verify_pwd = PasswordField('确认密码', validators=[EqualTo('password'), DataRequired()], render_kw={'placeholder': '重复密码'})
+    verify_pwd = PasswordField('确认密码', validators=[EqualTo('password'), DataRequired()],
+                               render_kw={'placeholder': '重复密码'})
     # 提交
     submit = SubmitField('注册')
 
@@ -34,34 +37,20 @@ class LoginForm(FlaskForm):
     submit = SubmitField('登录')
 
 
-class AddStore(FlaskForm):
+
+# 入库表单
+class AddStoreForm(FlaskForm):
+    partners = Partner.query.all()
+    choices = []
+    for i in partners:
+        s = ('{}'.format(i), '{}'.format(i))
+        choices.append(s)
+
+    name = StringField('名称', render_kw={'placeholder': '选填'})
     serial = StringField('编号', validators=[DataRequired()], render_kw={'placeholder': '编号'})
-    size = SelectField('规格', choices=[('S', 'S'), ('M', 'M'), ('L', 'L'), ('Other', '其它'), ('XXS', 'XXS'), ('XS', 'XS'), ('XL', 'XL'), ('XXL', 'XXL')], default='S')
-    number = IntegerField('数量', validators=[DataRequired()], render_kw={'placeholder': '编号'})
+    number = IntegerField('数量', validators=[DataRequired()], render_kw={'placeholder': '数量'})
+    size = SelectField('规格', choices=[('S', 'S'), ('M', 'M'), ('L', 'L'), ('XXS', 'XXS'), ('XS', 'XS'), ('XL', 'XL'), ('XXL', 'XXL'), ('Other', '其它')], default='S')
     unit = SelectField('单位', choices=[('a', '件'), ('b', '条'), ('c', '箱'), ('d', '个'), ('Other', '其它')], default='a')
     category = SelectField('类别', choices=[('overcoat', '大衣'), ('fabric', '面料'), ('cardigan', '羊毛衫'), ('sample_clothing', '样衣'), ('Other', '其它')], default='overcoat')
-    partner = SelectField('')
-
-
-    # 编号
-    serial = db.Column(db.String(50))
-    # 规格
-    size = db.Column(db.String(20))
-    # 数量
-    number = db.Column(db.Integer)
-    # 单位
-    unit = db.Column(db.String(5))
-    # 类别
-    category = db.Column(db.String(10))
-    # 合作商
-    partner = db.Column(db.String(50))
-    # 制单人
-    creator = db.Column(db.String(10))
-    # 制单时间
-    create_time = db.Column(db.DateTime, default=datetime.datetime.now)
-    # 审核状态
-    status = db.Column(db.Boolean)
-    # 审核人
-    reviewer = db.Column(db.String(10))
-    # 审核时间
-    review_time = db.Column(db.DateTime, default=datetime.datetime.now)
+    partner = SelectField('合作商', choices=choices)
+    submit = SubmitField('添加')

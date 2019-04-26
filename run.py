@@ -1,4 +1,4 @@
 from Warehouse import warehouse
 
 
-warehouse.run(debug=True, port=3000)
+warehouse.run(debug=True, port=80)

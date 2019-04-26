@@ -2,11 +2,11 @@ from Warehouse import warehouse as app
 from Warehouse import db
 from flask import render_template, redirect, flash, url_for
 from flask import request  # request.args.get 方法获取html指定name的值
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, AddStoreForm
 from .models import User, Store
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
     login_form = LoginForm()
@@ -31,7 +31,7 @@ def register():
             db.session.add(user)
             db.session.commit()
             # return render_template('login.html', form=login_form)
-            return redirect(url_for(login), form=login_form)
+            return redirect(url_for(login))
         # 表单验证失败
         else:
             context1 = {
@@ -71,3 +71,9 @@ def login():
             return render_template('login.html', form=form, context1=context1)
 
     return render_template('login.html', form=form)
+
+
+@app.route('/', methods=['GET', 'POST'])
+def storage():
+    form = AddStoreForm()
+    return render_template('storage.html', form=form)

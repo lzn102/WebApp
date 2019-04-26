@@ -32,7 +32,16 @@ class Store(db.Model):
     review_time = db.Column(db.DateTime, default=datetime.datetime.now)
 
     def __repr__(self):
-        return '{}'.format(self.id)
+        return '{}'.format(self.name)
+
+
+# 合作商表
+class Partner(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(50))
+
+    def __repr__(self):
+        return '{}'.format(self.name)
 
 
 # 员工表

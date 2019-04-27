@@ -38,19 +38,3 @@ class LoginForm(FlaskForm):
 
 
 
-# 入库表单
-class AddStoreForm(FlaskForm):
-    partners = Partner.query.all()
-    choices = []
-    for i in partners:
-        s = ('{}'.format(i), '{}'.format(i))
-        choices.append(s)
-
-    name = StringField('名称', render_kw={'placeholder': '选填'})
-    serial = StringField('编号', validators=[DataRequired()], render_kw={'placeholder': '编号'})
-    number = IntegerField('数量', validators=[DataRequired()], render_kw={'placeholder': '数量'})
-    size = SelectField('规格', choices=[('S', 'S'), ('M', 'M'), ('L', 'L'), ('XXS', 'XXS'), ('XS', 'XS'), ('XL', 'XL'), ('XXL', 'XXL'), ('Other', '其它')], default='S')
-    unit = SelectField('单位', choices=[('a', '件'), ('b', '条'), ('c', '箱'), ('d', '个'), ('Other', '其它')], default='a')
-    category = SelectField('类别', choices=[('overcoat', '大衣'), ('fabric', '面料'), ('cardigan', '羊毛衫'), ('sample_clothing', '样衣'), ('Other', '其它')], default='overcoat')
-    partner = SelectField('合作商', choices=choices)
-    submit = SubmitField('添加')

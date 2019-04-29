@@ -82,7 +82,8 @@ class TypeIOView(ModelView):
 class DepositView(ModelView):
     can_delete = False
     column_display_pk = True
-    column_labels = dict(id='单号', goods='产品', code='编号', batch='批次', standard='规格', amount='数量', depot='仓库', type_io='出入库类型', partner='合作商', author='制单人', creat_time='制单时间', status='审核状态', check='审核人', check_time='审核时间')
+    column_display_all_relations = True
+    column_labels = dict(id='单号', goods='产品', code='编号', batch='批次', standard_id='规格', amount='数量', depot='仓库', type_io='出入库类型', partner='合作商', author='制单人', creat_time='制单时间', status='审核状态', check='审核人', check_time='审核时间')
 
 
 class TakeoutView(ModelView):

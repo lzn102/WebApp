@@ -1,17 +1,12 @@
-from Warehouse.models import Partner
+import time
 
-partners = Partner.query.all()
 
-print(partners)
+def main():
+    print('1556549168')
+    print(time.time())
+    print(time.localtime(time.time()))
+    print(time.localtime(1556552748))
 
-tuples = []
-
-for i in partners:
-    s = ('{}'.format(i), '{}'.format(i))
-    print(s)
-    tuples.append(s)
-
-print(tuples)
 
 if __name__ == '__main__':
-    pass
+    main()

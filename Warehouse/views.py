@@ -73,3 +73,6 @@ def login():
     return render_template('login.html', form=form)
 
 
+@app.route('/')
+def index():
+    return render_template('index.html')

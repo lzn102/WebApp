@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <!--bootstrap CDN引用-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href={{ url_for('static', filename='css/styles.min.css') }}>
+
+    <!--引入子页面需要的静态代码引用-->
+    {% block head %}{% endblock %}
+
+    <!--引入子页面标题-->
+    {% block title %}{% endblock %}
+
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md">
+        <div class="container-fluid"><a class="navbar-brand" href="#">仓储管理系统</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-lg-flex justify-content-lg-end" id="navcol-1">
+                <div role="tablist" id="accordion-1">
+                    <div class="card">
+                        <div class="card-header" role="tab">
+                            <h6 class="mb-0">
+                                <a class="text-dark" data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1">系统设置</a>
+                            </h6>
+                        </div>
+                        <div class="collapse item-1 bg-dark" role="tabpanel" data-parent="#accordion-1">
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>员工管理</span></a>
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>角色管理</span></a>
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>部门管理</span></a>
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>权限分配</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab">
+                            <h6 class="mb-0">
+                                <a class="text-dark" data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="div#accordion-1 .item-2">基本资料</a>
+                            </h6>
+                        </div>
+                        <div class="collapse item-2 bg-dark" role="tabpanel" data-parent="#accordion-1">
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>仓库管理</span></a>
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>库位管理</span></a>
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>供应商管理</span></a>
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>客户管理</span></a>
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>计量单位</span></a>
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>产品类别</span></a>
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>产品管理</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab">
+                            <h6 class="mb-0">
+                                <a class="text-dark" data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3">仓库作业</a>
+                            </h6>
+                        </div>
+                        <div class="collapse item-3 bg-dark" role="tabpanel" data-parent="#accordion-1">
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>入库管理</span></a>
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>出库管理</span></a>
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>报损管理</span></a>
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>盘点管理</span></a>
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="#"><span>移库管理</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!--引入子页面主代码-->
+    {% block content %}{% endblock %}
+
+<!--bootstrap JS代码-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

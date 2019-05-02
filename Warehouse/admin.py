@@ -48,10 +48,6 @@ class UnitView(ModelView):
     column_labels = dict(name='名称', creat_time='创建时间')
 
 
-class GoodsCategoryView(ModelView):
-    can_delete = False
-    column_labels = dict(name='名称', remark='备注', creat_time='创建时间')
-
 
 class StandardView(ModelView):
     can_delete = False
@@ -107,7 +103,6 @@ admin.add_view(ClientView(Client, db.session, name='客户'))
 admin.add_view(PartnerCategoryView(PartnerCategory, db.session, name='合作商类型'))
 admin.add_view(PartnerView(Partner, db.session, name='合作商'))
 admin.add_view(UnitView(Unit, db.session, name='单位'))
-admin.add_view(GoodsCategoryView(GoodsCategory, db.session, name='产品种类'))
 admin.add_view(StandardView(Standard, db.session, name='规格'))
 admin.add_view(GoodsView(Goods, db.session, name='产品'))
 admin.add_view(DepotCategoryView(DepotCategory, db.session, name='仓库类型'))

@@ -3,7 +3,8 @@ from Warehouse import db
 from flask import render_template, redirect, flash, url_for
 from flask import request  # request.args.get 方法获取html指定name的值
 from .forms import RegisterForm, LoginForm
-from .models import User
+from .models import User, Deposit, Takeout
+from datetime import datetime, date, timedelta
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -20,7 +21,7 @@ def register():
         return render_template('register.html', form=form, context=context)
 
     # 表单提交验证
-    if request.method == "POST":
+    elif request.method == "POST":
         # form.validate_on_submit() 等于 method验证+form验证, 缺点是有些情况表单验证错误不提示
         if form.validate():
             username = form.username.data
@@ -57,7 +58,7 @@ def login():
             }
             return render_template('login.html', form=form, context=context)
 
-        if form.validate():
+        elif form.validate():
             telephone = form.telephone.data
             password = form.password.data
 
@@ -73,6 +74,27 @@ def login():
     return render_template('login.html', form=form)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    today = datetime.now().strftime('%Y-%m-%d')
+    if request.method == 'POST':
+        if request.args.get('date') == today:
+            yesterday = (date.today() + timedelta(days=-1)).strftime("%Y-%m-%d")
+            deposit_list = Deposit.query.filter(Deposit.creat_time.contains(yesterday)).all()
+            takeout_list = Takeout.query.filter(Takeout.creat_time.contains(yesterday)).all()
+            context1 = {
+                "deposits": deposit_list,
+                "takeouts": takeout_list
+            }
+            return render_template('index.html', context1=context1)
+        return 'hello'
+    else:
+        deposit_list = Deposit.query.filter(Deposit.creat_time.contains(today)).all()
+        takeout_list = Takeout.query.filter(Takeout.creat_time.contains(today)).all()
+
+        context = {
+            "deposits": deposit_list,
+            "takeouts": takeout_list
+        }
+
+        return render_template('index.html', context=context)

@@ -1,10 +1,10 @@
 import time
+from _datetime import datetime
 
 
 def main():
-    print(time.time())
-    print(time.ctime(1556605783))
-    print(time.ctime(1556611990))
+    today = datetime.now().strftime('%Y-%m-%d')
+    print(today)
 
 
 if __name__ == '__main__':
